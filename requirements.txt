@@ -1,0 +1,22 @@
+# Core data / ML stack
+numpy
+pandas
+scikit-learn
+xgboost
+imbalanced-learn
+
+# Visualisation
+matplotlib
+seaborn
+plotly
+lux-api
+
+# Deep learning (Neural_Networks_for_CKD_Prediction.ipynb)
+tensorflow
+keras
+
+# Deployment
+streamlit
+
+# Notebook environment
+jupyter
