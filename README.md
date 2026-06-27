@@ -85,7 +85,7 @@ This opens an interactive page in your browser where you can enter a patient's h
 
 - **Hyperparameter Tuning** — Enhance model performance with optimized parameters.
 - **Larger Dataset** — Incorporate additional data to improve model robustness.
-- **Enhanced Deployment** — Add features for a more user-friendly experience in the Streamlit app, and persist the fitted scaler/encoders so the app preprocesses inputs identically to training.
+- **Enhanced Deployment** — Add features for a more user-friendly experience in the Streamlit app, and expand the deployed model beyond the current four features (`age`, `wc`, `htn`, `dm`) for stronger predictions.
 
 ## Disclaimer
 
