@@ -40,8 +40,8 @@ The dataset comprises 25 health indicators for 400 patients, including age, bloo
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/VinayakMokashi/KidneyDiseaseDetection-AdvancedML.git
-cd KidneyDiseaseDetection-AdvancedML
+git clone https://github.com/VinayakMokashi/kidney-disease-detection.git
+cd kidney-disease-detection
 ```
 
 ### 2. Create a virtual environment (recommended) and install dependencies
