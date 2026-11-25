@@ -37,27 +37,13 @@ This dataset is easy. Haemoglobin, packed cell volume, specific gravity, serum c
 
 Label convention: 1 = CKD, 0 = not CKD.
 
-### What changed (November 2026)
-
-An earlier version of these notebooks overstated performance. Oversampling, scaling and PCA/LDA ran on all 400 rows **before** the train/test split, so about a third of the "test" rows (33 of 100 on average) were exact copies of training rows. The fixes:
-
-- **Split before anything is fitted:** all four notebooks now split first, and oversampling touches training rows only.
-- **Neural network:** the earlier notebook used the test rows as Keras' validation data and tuned its decision threshold on them. It now has a separate validation split for both, and trains with early stopping instead of a fixed 15 epochs.
-- **Text-typed numeric columns:** `pcv`, `wc` and `rc` contain `'\t?'` entries. They had been label-encoded as text (so `"10200"` sorted before `"9800"`), and real values like `'\t43'` had been replaced by the column's most common value. They are now cleaned and converted to numbers.
-- **PyCaret notebook:**
-  - It had used the `id` column as a feature. The rows are sorted by class (ids 0–249 are CKD), so `id` alone gives the answer away.
-  - Its "unseen" set was the last 20 rows of the file, all of them not-CKD.
-- **Main notebook:**
-  - The voting classifier's score had been computed from the Gaussian naive Bayes predictions.
-  - The "LDA" models had been trained on the PCA features.
-
 ## Project Structure
 
 | File | Description |
 | --- | --- |
 | `kidney_disease.csv` | The dataset — 400 patient records with 24 clinical attributes, an `id` column and the CKD classification label. |
 | `predicting_chronic_kidney_disease.ipynb` | Main notebook: data cleaning, exploratory analysis on the training split, and a comparison of nine classifiers (logistic regression, decision tree, two random forests, SVM, KNN, Gaussian and Bernoulli naive Bayes, and a voting ensemble) with PCA, LDA or no reduction, plus a tuned random forest. |
-| `Neural_Networks_for_CKD_Prediction.ipynb` | Keras neural network (two hidden layers with dropout): train/validation/test split, early stopping, threshold chosen on validation, repeated cross-validation, and a demonstration of why the split has to come first. |
+| `Neural_Networks_for_CKD_Prediction.ipynb` | Keras neural network (two hidden layers with dropout): train/validation/test split, early stopping, threshold chosen on validation, and repeated cross-validation. |
 | `Pycaret_to_predict_Kidney_diseases.ipynb` | Low-code cross-check with PyCaret: model comparison, LDA tuning, and evaluation on hold-out and unseen rows. PyCaret 3.3 needs Python 3.9–3.11. |
 | `Model_Deployment.ipynb` | Evaluates a compact random forest on four easy-to-enter features (`age`, `wc`, `htn`, `dm`), refits it on all rows, saves it as `classifier.pkl`, and generates the Streamlit app (`app.py`). |
 | `app.py` | Streamlit web application that loads the trained model and serves real-time CKD predictions. |
